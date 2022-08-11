@@ -1,0 +1,7 @@
+.commentContainer {
+    display: flex; 
+    align-items: flex-start;
+    flex-direction: column;
+    width: 70%; 
+    margin-left: 10%
+}
