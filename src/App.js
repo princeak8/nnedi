@@ -10,6 +10,7 @@ import { settingsActions } from "./store/settingsSlice";
 import { postActions } from "./store/postsSlice";
 import post from "./api/post";
 import { UserStore } from './store/UserStore';
+import RelatedPost from "./components/RelatedPost";
 
 import Index from "./screens/Index";
 import Register from "./screens/Register";
@@ -63,6 +64,7 @@ function App() {
     
   return (
     <Routes>
+        <Route path="/RelatedPost" element={<RelatedPost />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

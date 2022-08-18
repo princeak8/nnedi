@@ -1,10 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Search from "./Search";
 import { UserStore } from '../store/UserStore';
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import $ from 'jquery';
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -32,6 +34,17 @@ function Header(props) {
     const [state, setState] = useState({reset:true});
     const { page } = props;
     const {user, token_expires} = UserStore();
+
+    useEffect(() => {
+      // This will run when the page first loads and whenever the title changes
+        $( "span.menu" ).click(function() {
+            $( "ul.nav1" ).slideToggle( 300, function() {
+            // Animation complete.
+            });
+        });
+    }, []);
+    
+    const settings = useSelector((state) => state.settings);
 
     const navigate = useNavigate();
     
@@ -78,13 +91,26 @@ function Header(props) {
         navigate('/login');
     }
   return (
-    <HeaderContainer>
-      <HeaderLinks>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-      </HeaderLinks>
-      {userInfo()}
-    </HeaderContainer>
+    <div className="header">
+      <div className="container">
+          <div className="header-info">
+              <div className="logo">
+                  <NavLink to="/">
+                      <h1>{settings.blog_name}</h1>
+                      {/* <img src="images/logo.png" alt=" " /> */}
+                  </NavLink>
+              </div>
+              <div className="logo-right">
+                  <span className="menu"><img src="images/menu.png" alt=" "/></span>
+                  <ul className="nav1">
+                      <li className="cap"><NavLink to="/">Home</NavLink></li>
+                      <li><NavLink to="/about">About</NavLink></li>
+                  </ul>
+              </div>
+              <div className="clearfix"> </div>
+          </div>
+      </div>
+    </div>
   );
 }
 

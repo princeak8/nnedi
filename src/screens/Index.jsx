@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import BlogTitle from "../components/BlogTitle";
 import ImageSlider from "../components/ImageSlider";
@@ -17,6 +18,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postActions } from "../store/postsSlice";
 import Pagination from "../components/Pagination";
+import RecentPost from "../components/RecentPost";
 
 const BlogPostSection = styled.div`
   display: flex;
@@ -78,8 +80,6 @@ function Index(props) {
     dispatch(postActions.updatePosts(response.data.data));
   };
 
-  
-
   useEffect(() => {
     getAllPost(currentPage);
   }, [currentPage]);
@@ -117,17 +117,100 @@ function Index(props) {
   //console.log(settings.blog_name);
 
   return (
-    <>
+    <div>
       <Header />
-      <BlogTitle />
-      <BlogPostSection>
+      {/* <BlogTitle /> */}
+
+     {/* content  */}
+      <div className="content">
+          <div className="container">
+              <div className="content-text">	
+                  <div className="title">
+                      
+                      {renderContent()}
+                    
+                    <div className="border1">
+                      <div className="pre">
+                        <Link to="#">Prev</Link>
+                      </div>
+                      <div className="number">
+                        <ul>
+                          <li><Link to="#">1</Link></li>
+                          <li><Link to="#">2</Link></li>
+                          <li><Link to="#">3</Link></li>
+                          <li><Link to="#">4</Link></li>
+                          <li><Link to="#">5</Link></li>
+                          <li><Link to="#">6</Link></li>
+                          <li><Link to="#">7</Link></li>
+                          <li><Link to="#">8</Link></li>
+                          <li><Link to="#">9</Link></li>
+                          <li><Link to="#">10</Link></li>
+                          <li><Link to="#">11</Link></li>
+                          <li><Link to="#">12</Link></li>
+                        </ul>
+                      </div>
+                      <div className="next">
+                        <Link to="#">Next</Link>
+                      </div>
+                      <div className="clearfix"> </div>
+                    </div>
+
+                </div>
+
+                {/* <div className="categories">
+                  <div className="categ">
+                    <div className="cat">
+                      <h3>Categories</h3>
+                      <ul>
+                        <li><Link to="single.html">Lorem ipsum dolor sit amet</Link></li>
+                        <li><Link to="single.html">Consectetur adipiscing elit</Link></li>
+                        <li><Link to="single.html">Etiam aliquet convallis enim ut</Link></li>
+                        <li><Link to="single.html">Donec at pretium dui</Link></li>
+                        <li><Link to="single.html">Nulla sed massa sagittis venenatis</Link></li>
+                        <li><Link to="single.html">Praesent nec tortor nec massa</Link></li>
+                      </ul>
+                    </div>
+                    <div className="recent-com">
+                      <h3>Recent Comments</h3>
+                      <ul>
+                          <li><Link to="single.html">Donec consequat</Link> suscipit leo at accumsan. In hac habitasse platea dictumst.</li>
+                          <li><Link to="single.html">Aliquam erat ipsum,</Link> consequat id venenatis suscipit, venenatis sed leo.
+                            Ut nec lacus in sem eleifend semper id ac dolor.</li>
+                          <li><Link to="single.html">Etiam aliquet convallis enim ut 
+                              <span>Donec at pretium dui</span></Link></li>
+                          <li><Link to="single.html">Nulla sed massa sagittis</Link> venenatis Praesent nec tortor nec massa </li>
+                          <li><Link to="single.html">Donec faucibus mollis dolor
+                            <span>in ullamcorper.</span></Link>
+                          </li>
+                      </ul>
+                    </div>
+                    <div className="view">
+                      <Link to="/posts/:id">View More</Link>
+                    </div>
+                  </div>
+                </div> */}
+                <RecentPost />
+
+                <div className="clearfix"> </div>
+              </div>
+          </div>
+      </div>
+      <div className="clearfix"> </div>
+
+      <Footer />
+
+      {/* ................. */}
+      
+      {/* ................... */}
+{/* content  */}
+      {/* <BlogPostSection>
         {renderContent()}
         <About>
           <RecentPosts />
         </About>
       </BlogPostSection>
-      <Footer />
-    </>
+       */}
+    </div>
   );
 }
 

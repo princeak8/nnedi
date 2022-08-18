@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import RelatedPost from "../components/RelatedPost";
+
 import styled from "styled-components";
 import photo from "../assets/photo.jpg";
 
@@ -44,25 +46,46 @@ function BlogPost({ postItem }) {
   }
   //console.log("postItem", commentsCount());
   return (
-    <PostContainer>
-      <PostTitle>
-        <h2>{postItem.title}</h2>
-        <span>{`Posted ${postItem.created_at} by Aigars`}</span>
-      </PostTitle>
+      <div className="title">
+        <Link to="/RelatedPost"><h3>{postItem.title}</h3></Link>
+          {/* <div className="some-title" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+              <h3>{postItem.title}</h3>
+          </div> */}
+          <div className="john">
+            <p>
+                {/* <Link to="#">John Doe</Link> */}
+                <span>May.26.2012</span>
+            </p>
+          </div>
+          <div className="clearfix"> </div>
+          <div>
+              <div className="tilte-grid">
+                  <div onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+                    <img src="images/1.jpg" alt=" " />
+                  </div>
+                  <p className="vel"><Link to="single.html">Phasellus vel arcu vitae neque sagittis aliquet ac at purus.
+                  Vestibulum varius eros in dui sagittis non ultrices orci hendrerit.
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  </Link></p>
+                  <p className="Sed">
+                  <span><label>Sed euismod feugiat sodales.</label> Vivamus dui ipsum, laoreet 
+                  vitae euismod sit amet, euismod ac est. Sed turpis massa,
+                  convallis vitae facilisis eget, malesuada ullamcorper nibh. 
+                  Nunc pulvinar augue non felis dictum ultricies. Donec lacinia, 
+                  enim sit amet volutpat sodales, lorem velit fringilla metus, et
+                  semper metus sapien non odio. Nulla facilisi.<Link to="#" className="gravida">Praesent gravida suscipit leo,</Link> 
+                  eget fermentum magna malesuada ac. Maecenas pulvinar malesuada elementum.</span></p> 
+              </div>
+              <div className="read">
+                  <div onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+                        Read More
+                  </div>
+              </div>
+          </div>
 
-      <Image src={postItem.coverImage.url} alt="photo of a post" />
-
-      <PostText>{postItem.preview}...</PostText>
-
-      <ReadMore
-        onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })}
-      >
-        | <b style={{textDecorationLine: "underline", cursor: "pointer"}}>Read more</b> | Comments({commentsCount()})
-      </ReadMore>
-
-      <hr />
-    </PostContainer>
-  );
+         
+      </div>
+   );
 }
 
 export default BlogPost;
