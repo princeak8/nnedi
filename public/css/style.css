@@ -103,16 +103,19 @@ padding:0;
 /*-- //header --*/
 /*-- content --*/
 .content{
-	background: url(../images/banner.png);
-	background-repeat: repeat-y -14em 0px;
-	/* background-color: #eee5df; */
-	min-height: 1100px;
+	/* background: url(../images/banner.png);
+	background-repeat: repeat-y; */
+	background-color: #eee5df;
+	/* min-height: 1100px; */
 	position: relative;
+	border: solid red 1px;
 	}
 .content-text{
 	position: absolute;
 	top:-13%;
 	left: 12%;
+	z-index: 1;
+	/* bottom: -60%; */
 	}
 .content-text{
 	background: #fefcea; /* Old browsers */
@@ -156,14 +159,14 @@ padding:0;
 	font-weight: 600;
 	text-decoration:none;
 	}
-.some-title h3 a{
+.some-title h3{
 	color:#47443A;
 	font-size: 30px;
 	font-family: 'Playfair Display', serif;
 	font-weight: 600;
 	text-decoration:none;
 	}
-.some-title h3 a:hover{
+.some-title h3:hover{
 	text-decoration:none;
 	color:#DB7037;
 	}
@@ -409,9 +412,10 @@ p.vel a:hover{
 	}
 .read{
 	margin:0em 0 2em;
-	padding-left: 52em;
+	padding-left: 50em;
+
 	}
-.read a{
+.read .readInner{
 	color:#DB7037;
 	font-style:italic;
 	font-family: 'Playfair Display', serif;
@@ -421,7 +425,7 @@ p.vel a:hover{
 	background:url(../images/1.png) no-repeat 5.5em .5em;
 	display:block;
 	}
-.read a:hover{
+.read .readInner:hover{
 	color:#47443A;
 	background:url(../images/1-.png) no-repeat 5.5em .5em;
 	display:block;
@@ -516,8 +520,11 @@ p.vel a:hover{
 /*-- //content --*/
 /*-- footer --*/
 .footer{
+	/* margin-top: 40em; */
 	background:#54472A;
 	padding:10em 0em 3em;
+	position: relative;
+	/* bottom: 0; */
 	}
 .footer-grid{
 	float:left;
@@ -1511,7 +1518,7 @@ p.lom{
 	  left: 1%;
 	  width: 98%;
 	}
-	.some-title h3 a {
+	.some-title h3 {
 		font-size: 26px;
 	}
 	.title {
@@ -1670,7 +1677,7 @@ p.lom{
 	.content-text {
 		padding: 3em 1em 3em;
 	}
-	.some-title h3 a {
+	.some-title h3 {
 	  font-size: 23px;
 	}
 	.tilte-grid p span {
@@ -2376,7 +2383,7 @@ p.lom{
 	.read {
 	  padding-left: 24em;
 	}
-	.some-title h3 a {
+	.some-title h3 {
 	  font-size: 20px;
 	}
 	.pre a {
@@ -2400,7 +2407,7 @@ p.lom{
 	.number {
 	  margin-left: 3em;
 	}
-	.read a {
+	.read .readInner {
 		font-size: 13px;
 	}
 	.cat h3 {
@@ -2602,7 +2609,7 @@ p.lom{
 	  padding: 2em 0 0;
 	  min-height: 155px;
 	}
-	.some-title h3 a {
+	.some-title h3 {
 	  font-size: 15px;
 	}
 	.john p {

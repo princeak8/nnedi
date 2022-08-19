@@ -189,13 +189,14 @@ function Index(props) {
                     </div>
                   </div>
                 </div> */}
-                <RecentPost />
+                <RecentPosts />
 
                 <div className="clearfix"> </div>
               </div>
           </div>
       </div>
       <div className="clearfix"> </div>
+
 
       <Footer />
 

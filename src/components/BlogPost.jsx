@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import RelatedPost from "../components/RelatedPost";
-
 import styled from "styled-components";
 import photo from "../assets/photo.jpg";
 
@@ -46,11 +45,11 @@ function BlogPost({ postItem }) {
   }
   //console.log("postItem", commentsCount());
   return (
-      <div className="title">
-        <Link to="/RelatedPost"><h3>{postItem.title}</h3></Link>
-          {/* <div className="some-title" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+      <div>
+        {/* <Link to="/RelatedPost"><h3>{postItem.title}</h3></Link> */}
+          <div className="some-title" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
               <h3>{postItem.title}</h3>
-          </div> */}
+          </div>
           <div className="john">
             <p>
                 {/* <Link to="#">John Doe</Link> */}
@@ -69,19 +68,19 @@ function BlogPost({ postItem }) {
                   </Link></p>
                   <p className="Sed">
                   <span><label>Sed euismod feugiat sodales.</label> Vivamus dui ipsum, laoreet 
-                  vitae euismod sit amet, euismod ac est. Sed turpis massa,
-                  convallis vitae facilisis eget, malesuada ullamcorper nibh. 
-                  Nunc pulvinar augue non felis dictum ultricies. Donec lacinia, 
                   enim sit amet volutpat sodales, lorem velit fringilla metus, et
                   semper metus sapien non odio. Nulla facilisi.<Link to="#" className="gravida">Praesent gravida suscipit leo,</Link> 
                   eget fermentum magna malesuada ac. Maecenas pulvinar malesuada elementum.</span></p> 
               </div>
               <div className="read">
-                  <div onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+                  <div className="readInner" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
                         Read More
                   </div>
               </div>
           </div>
+          <div className="border">
+					    <p>a</p>
+				  </div>
 
          
       </div>
