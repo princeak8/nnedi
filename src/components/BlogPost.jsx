@@ -82,19 +82,13 @@ function BlogPost({ postItem }) {
           <div>
               <div className="tilte-grid">
                   <div onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
-                    <img src="images/1.jpg" alt=" " />
-                    {/* <Image src={state.coverImage.url} alt="photo of a post" /> */}
+                    {/* <img src="images/1.jpg" alt=" " /> */}
+                    <Image src={postItem.coverImage.url} alt="photo of a post" />
 
                   </div>
-                  <p className="vel"><Link to="single.html">Phasellus vel arcu vitae neque sagittis aliquet ac at purus.
-                  Vestibulum varius eros in dui sagittis non ultrices orci hendrerit.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </Link></p>
-                  <p className="Sed">
-                  <span><label>Sed euismod feugiat sodales.</label> Vivamus dui ipsum, laoreet 
-                  enim sit amet volutpat sodales, lorem velit fringilla metus, et
-                  semper metus sapien non odio. Nulla facilisi.<Link to="#" className="gravida">Praesent gravida suscipit leo,</Link> 
-                  eget fermentum magna malesuada ac. Maecenas pulvinar malesuada elementum.</span></p> 
+                  <p className="vel">
+                    {postItem.preview}
+                  </p>
               </div>
               <div className="read">
                   <div className="readInner" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>

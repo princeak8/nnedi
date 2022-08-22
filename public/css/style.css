@@ -41,7 +41,7 @@ padding:0;
 /*-- header --*/
 .header{
 	background:url(../images/header.jpg) no-repeat -18em 0em;
-	min-height:326px;
+	min-height:200px;
 	}
 .header-info{
 	padding:3em 0 0;
