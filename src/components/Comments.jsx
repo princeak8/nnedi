@@ -18,15 +18,29 @@ function Comments(props) {
     const renderComments = () => {
         return state.comments.map((comment) => {
             return (
-                <div key={comment.id} style={{marginTop: 20, textAlign: 'left', width: "100%"}}>
-                    <h4>{comment.reader.name}</h4>
-                    <p>
-                        {comment.message}
-                    </p>
-                    <Replies replies={comment.replies} comment_id={comment.id} />
-                    <div style={{marginTop: 40}}>
-                        <hr />
+                // <div key={comment.id} style={{marginTop: 20, textAlign: 'left', width: "100%"}}>
+                //     <h4>{comment.reader.name}</h4>
+                //     <p>
+                //         {comment.message}
+                //     </p>
+                //     <Replies replies={comment.replies} comment_id={comment.id} />
+                //     <div style={{marginTop: 40}}>
+                //         <hr />
+                //     </div>
+                // </div>
+
+                <div key={comment.id} className="comments-info" style={{width:"100%"}}>
+                    {/* <div className="cmnt-icon-left">
+                        <a href="#"><img src="images/icon3.png" alt=""/></a>
+                    </div> */}
+                    <div className="cmnt-icon-right" style={{width:"100%"}}>
+                        <p className="pull-right">MAY 13, 2015</p>
+                        <p>Admin</p>
+                        <p className="cmmnt">{comment.message}</p>
                     </div>
+                    <div className="clearfix"> </div>
+
+                    <Replies replies={comment.replies} comment_id={comment.id} />
                 </div>
             );
         })
@@ -69,13 +83,12 @@ function Comments(props) {
     const { container } = styles;
     return (
         <>
-            <div>
-                <h3>COMMENTS({state.comments.length})</h3>
-                <div style={container}>
-                    {renderComments()}
-                </div>
-                {renderMakeComment()}
+            <div className="comments">
+                <h4>Comments</h4>
+                {renderComments()}
+                                    
             </div>
+            {renderMakeComment()}
         </>
     );
 }

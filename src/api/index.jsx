@@ -6,6 +6,7 @@ const { token } = UserStore();
 const post = async (url, data) => {
     //console.log('userStore: ', UserStore);
     // const { token } = UserStore();
+    //console.log('token: ', token);
     let postUrl = domain+url;
     return client.apiPostClient.post(
         postUrl,

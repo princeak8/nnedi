@@ -6,6 +6,8 @@ import { UserStore } from '../store/UserStore';
 import { useNavigate } from "react-router-dom";
 
 function ReplyForm(props) {
+    const {user} = UserStore();
+    const navigate = useNavigate();
     const { SubmitReply, repliesCount } = props;
     const [state, setState] = useState({message: '', errorMsg:[], isLoading: false, successMsg: '', show:false});
 
@@ -52,35 +54,46 @@ function ReplyForm(props) {
 
     const LeaveReplyStyle = () => {
         if(state.show) {
-            return {float: "left", color: "#551A8B", cursor:"pointer"};
+            return {color: "#551A8B", cursor:"pointer", marginTop: 10};
         }else{
-            return {float: "left", textDecorationLine: "underline", color: "#0000EE", cursor:"pointer"};
+            return {textDecorationLine: "underline", color: "#0000EE", cursor:"pointer"};
         }
     }
 
-    const renderForm = () => {
+    const renderContent = () => {
         if(state.show || repliesCount == 0) {
-            return (
-                <form onSubmit={handleSubmit} style={{width: "100%", marginTop: 10, marginLeft: "auto", marginRight: "auto"}}>
-                    {displayErrors()}
-                    {displaysuccess()}
-                    <textarea className="form-control" onChange={handleMessageChange} value={state.message} required></textarea>
-                    {state.isLoading && (
-                        <button className="btn btn-primary" disabled={true} style={{float: "left"}}>
-                            <i className={`fa fa-circle-o-notch fa-spin`}></i>
-                            Submiting
-                        </button>
-                    )}
-                    {!state.isLoading && <button className="btn btn-primary" style={{float: "left"}}>Submit</button>}
-                </form>
-            );
+            console.log("show: ", state.show);
+            if(user == null) {
+                return(
+                    <p>
+                        <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/login')}> Login </span> | 
+                        <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/register')}> Signup </span> 
+                        to Reply
+                    </p>
+                );
+            }else{
+                return(
+                    <form onSubmit={handleSubmit} style={{width: "100%", marginTop: 10, marginLeft: "auto", marginRight: "auto"}}>
+                        {displayErrors()}
+                        <textarea className="form-control" onChange={handleMessageChange} value={state.message} required></textarea>
+                        {state.isLoading && (
+                            <button className="btn btn-primary" disabled={true} style={{float: "left"}}>
+                                <i className={`fa fa-circle-o-notch fa-spin`}></i>
+                                Submiting
+                            </button>
+                        )}
+                        {!state.isLoading && <button className="btn btn-primary" style={{float: "left"}}>Submit</button>}
+                    </form>
+                );
+            }
         }
     }
     
     return (
                 <>
-                    <p style={LeaveReplyStyle()} onClick={toggleShow}>Leave a reply</p>
-                    {renderForm()}
+                    <p style={LeaveReplyStyle()} className="pull-right" onClick={toggleShow}>Leave a reply</p>
+                    <div style={{height:"1em"}}></div>
+                    {renderContent()}
                 </>
         );
 }
