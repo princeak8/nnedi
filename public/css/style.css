@@ -66,7 +66,7 @@ padding:0;
 	display:inline-block;
 	background: #5B4F33;
 	padding: 15px 0px;
-	float: left;
+	/* float: left; */
 	}
 .logo-right ul li.cap a{
 	background:#423721;
@@ -110,11 +110,12 @@ padding:0;
 	position: relative;
 	}
 .content-text{
-	position: absolute;
+	/* position: absolute; */
 	top:-13%;
-	left: 12%;
+	/* left: 12%; */
+	margin-right: auto;
+	margin-left: auto;
 	z-index: 1;
-	/* bottom: -60%; */
 	}
 .content-text{
 	background: #fefcea; /* Old browsers */
@@ -127,7 +128,7 @@ padding:0;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
 	padding:3em 2em;
 	box-shadow:2px 0px 9px #adadad;
-	width: 76%;
+	width: auto;
 	border-radius:15px;
 	-webkit-border-radius:15px;
 	-moz-border-radius:15px;
@@ -519,11 +520,10 @@ p.vel a:hover{
 /*-- //content --*/
 /*-- footer --*/
 .footer{
-	/* margin-top: 40em; */
 	background:#54472A;
 	padding:10em 0em 3em;
+	bottom: 0;
 	position: relative;
-	/* bottom: 0; */
 	}
 .footer-grid{
 	float:left;
@@ -1105,7 +1105,7 @@ p.lom{
 	text-transform:uppercase;
 	font-size:1.5em;
 	margin:2em 0;
-	color:#;
+	/* color:#; */
 	font-family: 'Playfair Display', serif;
 	}
 .contact-right1 h4 span{
