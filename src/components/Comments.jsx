@@ -82,14 +82,14 @@ function Comments(props) {
     }
     const { container } = styles;
     return (
-        <>
+        <div>
             <div className="comments">
                 <h4>Comments</h4>
                 {renderComments()}
                                     
             </div>
             {renderMakeComment()}
-        </>
+        </div>
     );
 }
 
