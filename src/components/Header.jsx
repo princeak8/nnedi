@@ -47,12 +47,18 @@ function Header(props) {
     const settings = useSelector((state) => state.settings);
 
     const navigate = useNavigate();
+
+    const styles = {
+      containerStyle: {float:'right', marginRight: '5%', marginTop: '1em'}
+    };
+
+    const { containerStyle } = styles;
     
     const userInfo = () => {
         //console.log('user', user);
         if(user != null) {
             return(
-                <div style={{float:'right', marginRight: '5%'}}>
+                <div style={containerStyle}>
                     <span>{user.name}</span> |  
                     <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => logout()}> Logout</span>
                 </div>
@@ -60,7 +66,7 @@ function Header(props) {
         }else{
             if(!page) {
                 return(
-                  <div style={{float:'right', marginRight: '5%'}}>
+                  <div style={containerStyle}>
                       <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/login')}> Login </span> | 
                       <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/register')}> Sign Up </span>
                   </div>
@@ -68,14 +74,14 @@ function Header(props) {
             }else{
                 if(page=='login') {
                   return(
-                    <div style={{float:'right', marginRight: '5%'}}>
+                    <div style={containerStyle}>
                         <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/register')}> Sign Up </span>
                     </div>
                   );
                 }
                 if(page=='register') {
                   return(
-                    <div style={{float:'right', marginRight: '5%'}}>
+                    <div style={containerStyle}>
                         <span style={{color: 'blue', cursor: 'pointer'}} onClick={() => navigate('/login')}> Login </span>
                     </div>
                   );
@@ -108,6 +114,7 @@ function Header(props) {
                   </ul>
               </div>
               <div className="clearfix"> </div>
+              {userInfo()}
           </div>
       </div>
     </div>

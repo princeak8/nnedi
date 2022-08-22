@@ -20,11 +20,16 @@ function Replies(props) {
         if(state.replies.length > 0) {
             return state.replies.map((reply) => {
                 return (
-                    <div key={reply.id} style={{marginTop: 20, textAlign: 'left'}}>
-                        <h4>{reply.reader.name}</h4>
-                        <p>
-                            {reply.message}
-                        </p>
+                    // <div key={reply.id} style={{marginTop: 20, textAlign: 'left'}}>
+                    //     <h4>{reply.reader.name}</h4>
+                    //     <p>
+                    //         {reply.message}
+                    //     </p>
+                    // </div>
+                    <div key={reply.id}>
+                        <p className="pull-right">{reply.created_at}</p>
+                        <p>{reply.reader.name}</p>
+                        <p>{reply.message}.</p>
                     </div>
                 );
             })
@@ -52,10 +57,16 @@ function Replies(props) {
         if(state.show) {
             return (
                 <>
-                    <div style={container}>
+                    {/* <div style={container}>
                         {renderReplies()}
                     </div>
-                    <ReplyForm SubmitReply={SubmitReply} repliesCount={state.replies.length} />
+                    <ReplyForm SubmitReply={SubmitReply} repliesCount={state.replies.length} /> */}
+
+                    {renderReplies()}
+                    <div className="aliqua">
+                        <ReplyForm SubmitReply={SubmitReply} repliesCount={state.replies.length} />
+                        {/* <a href="#">Reply</a> */}
+                    </div>
                 </>
             );
         }
@@ -67,12 +78,14 @@ function Replies(props) {
     }
     const { container } = styles;
     return (
-        <>
-            <div styles={{marginTop: 10, width: "100%"}}>
+        <div style={{width:"80%", marginLeft: "18%"}}>
+            <h5 style={ReplyHeaderStyle()} onClick={toggleShow}>Replies({state.replies.length})</h5>
+            {/* <div styles={{marginTop: 10, width: "100%"}}>
                 <h5 style={ReplyHeaderStyle()} onClick={toggleShow}>REPLIES({state.replies.length})</h5>
                 {renderContent()}
-            </div>
-        </>
+            </div> */}
+            {renderContent()}
+        </div>
     );
 }
 

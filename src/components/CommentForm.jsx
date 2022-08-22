@@ -49,19 +49,34 @@ function CommentForm(props) {
     }
     
     return (
-            <form onSubmit={handleSubmit} style={{width: "80%", marginTop: 10, marginLeft: "auto", marginRight: "auto"}}>
-                <p style={{float: "left"}}>Leave a comment</p>
+            // <form onSubmit={handleSubmit} style={{width: "80%", marginTop: 10, marginLeft: "auto", marginRight: "auto"}}>
+            //     <p style={{float: "left"}}>Leave a comment</p>
+            //     {displayErrors()}
+            //     {displaysuccess()}
+            //     <textarea className="form-control" onChange={handleMessageChange} value={state.message} required></textarea>
+            //     {state.isLoading && (
+            //         <button className="btn btn-primary" disabled={true} style={{float: "left"}}>
+            //             <i className={`fa fa-circle-o-notch fa-spin`}></i>
+            //             Submiting
+            //         </button>
+            //     )}
+            //     {!state.isLoading && <button className="btn btn-primary" style={{float: "left"}}>Submit</button>}
+            // </form>
+            <div className="consequat">
+                <h4>Leave Your Comment Here</h4>
                 {displayErrors()}
                 {displaysuccess()}
-                <textarea className="form-control" onChange={handleMessageChange} value={state.message} required></textarea>
-                {state.isLoading && (
-                    <button className="btn btn-primary" disabled={true} style={{float: "left"}}>
-                        <i className={`fa fa-circle-o-notch fa-spin`}></i>
-                        Submiting
-                    </button>
-                )}
-                {!state.isLoading && <button className="btn btn-primary" style={{float: "left"}}>Submit</button>}
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <textarea className="form-control" onChange={handleMessageChange} value={state.message} required></textarea>
+                    {state.isLoading && (
+                        <button className="btn btn-primary" disabled={true} style={{float: "left"}}>
+                            <i className={`fa fa-circle-o-notch fa-spin`}></i>
+                            Submiting
+                        </button>
+                    )}
+                    {!state.isLoading && <button className="btn btn-primary" style={{float: "left"}}>Submit</button>}
+                </form>
+            </div>
     );
 }
 
