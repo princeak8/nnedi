@@ -43,7 +43,7 @@ padding:0;
 }
 /*-- header --*/
 .header{
-	background:url(../images/header.jpg) no-repeat -18em 0em;
+	background:url(../images/header.jpg) no-repeat 0em 0em;
 	min-height:200px;
 	}
 .header-info{
@@ -2781,7 +2781,7 @@ p.lom{
 	.fig-text1-right h3 {
 		font-size: 15px;
 	}
-	.header1 {
+	.header {
 		background: url(../images/header.jpg) no-repeat -43em 0em;
 		  min-height: 75px;
 	}
