@@ -20,11 +20,12 @@ const PostTitle = styled.div`
 `;
 
 const Image = styled.img`
-  height: 400px;
-  width: 100%;
-  @media (max-width: 414px) {
-    height: 250px;
-  }
+  height: 300px;
+  width: auto;
+  object-fit: cover;
+  // @media (max-width: 414px) {
+  //   height: 250px;
+  // }
 `;
 
 const PostText = styled.div`
