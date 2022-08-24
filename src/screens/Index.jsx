@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import BlogTitle from "../components/BlogTitle";
 import ImageSlider from "../components/ImageSlider";
@@ -53,14 +53,18 @@ const domain = process.env.REACT_APP_DOMAIN;
 function Index(props) {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.postsDisplay.allPosts);
+  const [state, setState] = useState({error:''})
 
-  const currentPage = useSelector((state) => state.postsDisplay.currentPage);
+  var currentPage = useParams().page;
+  if(typeof currentPage === 'undefined') currentPage = 1;
+  //const currentPage = useSelector((state) => state.postsDisplay.currentPage);
 
   const { perPage, totalPosts } = useSelector(
     (state) => state.postsDisplay.displaySetting
   );
 
   const handlePageChange = (page) => {
+    console.log('page:',page);
     dispatch(postActions.updateCurrentPage(page));
   };
 
@@ -72,17 +76,37 @@ function Index(props) {
     dispatch(postActions.updateCurrentPage(Math.floor(totalPosts / perPage)));
   };
 
-  const getAllPost = async (currentPage) => {
+  var intervalId = null;
+  const getAllPost = async (currentPage, source) => {
+    console.log('source: ', source);
     const response = await post.getAllPosts(domain, currentPage);
-    if (!response.ok) return console.log(response.data);
+    window.scrollTo(0, 0);
+    if (!response.ok) {
+        console.log(response.data);
+        setState({...state, error:"Oops!.. Network error occured"});
+        intervalId = setInterval(() => {
+          getAllPost(currentPage, 'retry');
+        }, 60000)
+        return console.log('');
+    }
+    console.log('error cleared', state.error);
+    setState({...state, error:""});
+    console.log('interval ID: ', intervalId);
+    clearInterval(intervalId);
 
     dispatch(postActions.setDisplaySetting(response.data.meta));
     dispatch(postActions.updatePosts(response.data.data));
   };
 
   useEffect(() => {
-    getAllPost(currentPage);
+    getAllPost(currentPage, 'use effect');
   }, [currentPage]);
+
+  const displayError = () => {
+      if(state.error != '') {
+          return (<p className="alert alert-danger">{state.error}</p>);
+      }
+  }
 
   const renderContent = () => {
       if(posts) {
@@ -104,7 +128,7 @@ function Index(props) {
                 <Pagination
                     itemsCount={totalPosts}
                     pageSize={perPage}
-                    currentPage={currentPage}
+                    currentPage={parseInt(currentPage)}
                     onPageChange={handlePageChange}
                     onGotoFirstPage={handleGotoFirstPage}
                     onGotoLastPage={handleGotoLastPage}
@@ -126,34 +150,10 @@ function Index(props) {
           <div className="container">
               <div className="content-text">	
                   <div className="title">
-                      
+                      {displayError()}
                       {renderContent()}
                     
-                    <div className="border1">
-                      <div className="pre">
-                        <Link to="#">Prev</Link>
-                      </div>
-                      <div className="number">
-                        <ul>
-                          <li><Link to="#">1</Link></li>
-                          <li><Link to="#">2</Link></li>
-                          <li><Link to="#">3</Link></li>
-                          <li><Link to="#">4</Link></li>
-                          <li><Link to="#">5</Link></li>
-                          <li><Link to="#">6</Link></li>
-                          <li><Link to="#">7</Link></li>
-                          <li><Link to="#">8</Link></li>
-                          <li><Link to="#">9</Link></li>
-                          <li><Link to="#">10</Link></li>
-                          <li><Link to="#">11</Link></li>
-                          <li><Link to="#">12</Link></li>
-                        </ul>
-                      </div>
-                      <div className="next">
-                        <Link to="#">Next</Link>
-                      </div>
-                      <div className="clearfix"> </div>
-                    </div>
+                    
 
                 </div>
 

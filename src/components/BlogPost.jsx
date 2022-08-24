@@ -78,7 +78,7 @@ function BlogPost({ postItem }) {
           <div className="john">
             <p>
                 {/* <Link to="#">John Doe</Link> */}
-                <span>May.26.2012</span>
+                <span>{postItem.created_at}</span>
             </p>
           </div>
           <div className="clearfix"> </div>

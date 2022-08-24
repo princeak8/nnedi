@@ -26,6 +26,7 @@ const postSlice = createSlice({
     },
 
     updateCurrentPage(state, action) {
+      console.log('update current page action: ',action);
       state.currentPage = action.payload;
     },
   },

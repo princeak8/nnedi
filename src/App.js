@@ -71,6 +71,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/posts/:id" element={<FullBlogPost />} />
         <Route path="/confirm_email/:signature" element={<ConfirmEmailLink />} />
+        <Route path="/page/:page" element={<Index />} />
+        <Route path="/page" element={<Index />} />
         <Route path="/" element={<Index />} />
     </Routes>
   );
