@@ -61,8 +61,7 @@ function FullBlogPost(props) {
         coverImage:{}, created_at:'', views_count:0, loading: false, errorMsg: '', loaded: false, loadedSuccessfully: false
     });
     //const post_id = location.state;
-    const post_id = useParams().id
-    console.log('post_id', post_id);
+    const title = useParams().title
 
     useEffect(() => {
         getPost();
@@ -76,7 +75,7 @@ function FullBlogPost(props) {
 
     const getPost = async () => {
         setState({...state, loading: true});
-        let post = await request('GET', '/post/show/'+post_id);
+        let post = await request('GET', '/post/show/'+title);
         setState({...state, loading: false, loaded: true});
         if(post.status == 200) {
             const {

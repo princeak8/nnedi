@@ -69,7 +69,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/posts/:id" element={<FullBlogPost />} />
+        <Route path="/posts/:title" element={<FullBlogPost />} />
         <Route path="/confirm_email/:signature" element={<ConfirmEmailLink />} />
         <Route path="/page/:page" element={<Index />} />
         <Route path="/page" element={<Index />} />

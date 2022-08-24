@@ -69,7 +69,7 @@ function BlogPost({ postItem }) {
     return (
       <div>
         {/* <Link to="/RelatedPost"><h3>{postItem.title}</h3></Link> */}
-          <div className="some-title" onClick={() => navigate(`posts/${postItem.id}`, { state: postItem.id })} style={{cursor:"pointer"}}>
+          <div className="some-title" onClick={() => navigate(`posts/${postItem.title}`, { state: postItem.id })} style={{cursor:"pointer"}}>
               <h3>{postItem.title}</h3>
           </div>
           <div className="john">

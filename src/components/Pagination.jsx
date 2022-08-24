@@ -33,6 +33,7 @@ const Pagination = (props) => {
     const renderPageNumbers = () => {
         return pages.map((page) => {
             return (
+
               <li key={page} style={page === currentPage ? active : {}}>
                   <Link to={`/page/${page}`}> {page} </Link>
               </li>
@@ -45,11 +46,21 @@ const Pagination = (props) => {
 
     return (
         <div className="border1"> 
+            {currentPage > 1 && (<div className="pre">
+              <Link to={`/page/${currentPage-1}`}>Prev</Link>
+            </div>)}
+
             <div className="number">
                 <ul>
                     {renderPageNumbers()}
                 </ul>
             </div>
+
+            {currentPage < pagesCount && (<div className="next">
+              <Link to={`/page/${currentPage+1}`}>Next</Link>
+            </div>)}
+
+            <div className="clearfix"> </div>
         </div>
       // <nav>
       //   <Paginate className="pagination">

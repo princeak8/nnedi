@@ -12,7 +12,7 @@ function About(props) {
   return (
     <>
       <Header />
-      <BlogTitle />
+      <h2 style={{marginLeft: "5%"}}>About</h2>
       <div style={{marginTop:20, marginBottom: 40, paddingLeft: "10%", paddingRight: "10%"}}>
           {about}
       </div>

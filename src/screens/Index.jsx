@@ -76,30 +76,35 @@ function Index(props) {
     dispatch(postActions.updateCurrentPage(Math.floor(totalPosts / perPage)));
   };
 
-  var intervalId = null;
-  const getAllPost = async (currentPage, source) => {
-    console.log('source: ', source);
+  /**
+   * Wait for the given milliseconds
+   * @param {number} milliseconds The given time to wait
+   * @returns {Promise} A fulfilled promise after the given time has passed
+   */
+  function waitFor(milliseconds) {
+      return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  const getAllPost = async (currentPage) => {
     const response = await post.getAllPosts(domain, currentPage);
     window.scrollTo(0, 0);
     if (!response.ok) {
         console.log(response.data);
         setState({...state, error:"Oops!.. Network error occured"});
-        intervalId = setInterval(() => {
-          getAllPost(currentPage, 'retry');
-        }, 60000)
+        await waitFor(30000);
+        getAllPost(currentPage);
         return console.log('');
     }
     console.log('error cleared', state.error);
     setState({...state, error:""});
-    console.log('interval ID: ', intervalId);
-    clearInterval(intervalId);
+    
 
     dispatch(postActions.setDisplaySetting(response.data.meta));
     dispatch(postActions.updatePosts(response.data.data));
   };
 
   useEffect(() => {
-    getAllPost(currentPage, 'use effect');
+    getAllPost(currentPage);
   }, [currentPage]);
 
   const displayError = () => {
