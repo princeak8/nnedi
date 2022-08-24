@@ -50,7 +50,7 @@ function Footer(props) {
                   <div className="footer-grid">
                     <h3>Recent Posts</h3>
                     <ul>
-                      {   latestPosts.map((post) => <li><Link to={`/posts/${post.title}`}>{post.title}</Link></li> ) }
+                      { (latestPosts.length > 0) &&  latestPosts.map((post) => <li><Link to={`/posts/${post.title}`}>{post.title}</Link></li> ) }
                           
                     </ul>
                   </div>
