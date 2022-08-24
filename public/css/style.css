@@ -2059,6 +2059,8 @@ p.lom{
 	}
 	.content-text {
 	  top: -1%;
+	  /* left:2.5%; */
+	  /* width: 85% !important; */
 	}
 	.title {
 	  width: 100%;
@@ -2314,6 +2316,17 @@ p.lom{
 	.in-right input[type="submit"] {
 	  width: 42%;
 	}
+}
+@media (max-width: 600px)
+{
+	.tilte-grid img {
+		height: 250px;
+		width: 100%;
+	}
+	.read {
+		padding-left: 18em;
+	  }
+
 }
 @media (max-width: 568px)
 {
@@ -2583,6 +2596,7 @@ p.lom{
 	  width: 5%;
 	}
 }
+
 @media (max-width: 414px)
 {
 	.header {
