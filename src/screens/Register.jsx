@@ -13,7 +13,7 @@ function Register(props) {
     const emailRef = useRef();
     const nameRef = useRef();
     const passwordRef = useRef();
-    const [state, setState] = useState({errorMsg:[], name: '', email: '', password: '', isLoading: false, successMsg: ''});
+    const [state, setState] = useState({errorMsg:[], name: '', email: '', password: '', isLoading: false, successMsg: '', submitting: false});
 
     const handleNameChange = (event) => {
         setState({...state, name:event.target.value});
@@ -30,13 +30,14 @@ function Register(props) {
     const handleSubmit = async (event) => {
         //Submit form
         event.preventDefault();
-        let userData = {name: state.name, email: state.email, password: state.password, domain:process.env.REACT_APP_DOMAIN};
+        let userData = {name: state.name, email: state.email, password: state.password, domain:process.env.REACT_APP_DOMAIN, domain_name:process.env.REACT_APP_DOMAIN_NAME};
         //console.log(userData);
+        setState({...state, submitting:true});
         const response = await registerUser(userData);
         console.log(response.status);
         if(response.status == 200 || response.status == 201) {
             console.log('success', response.data);
-            setState({...state, successMsg:response.data.message});
+            setState({...state, submitting:false, successMsg:response.data.message, name:"", email:"", password:""});
         }else{
             handleError(response, response.status);
         }
@@ -51,7 +52,7 @@ function Register(props) {
                 break;
         }
         console.log(errorMsg);
-        setState({...state, errorMsg:errorMsg});
+        setState({...state, submitting:false, errorMsg:errorMsg});
     } 
 
     const displayErrors = () => {
@@ -65,7 +66,7 @@ function Register(props) {
 
     const displaysuccess = () => {
         if(state.successMsg != '') {
-            setTimeout(() => setState({...state, successMsg:''}), 5000);
+            //setTimeout(() => setState({...state, successMsg:''}), 5000);
             return (<div className="alert alert-success"><span>{state.successMsg}</span><br/></div>); 
         }
     }
@@ -98,13 +99,13 @@ function Register(props) {
                     </div>
 
                     <br />
-                    {state.isLoading && (
+                    {state.submitting && (
                         <button disabled={true}>
                             <i className={`fa fa-circle-o-notch fa-spin`}></i>
-                            Loading
+                            Submitting
                         </button>
                     )}
-                    {!state.isLoading && <button>REGISTER</button>}
+                    {!state.submitting && <button>REGISTER</button>}
                 </form>
             </div>
         </>

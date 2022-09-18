@@ -90,7 +90,7 @@ function Index(props) {
     window.scrollTo(0, 0);
     if (!response.ok) {
         console.log(response.data);
-        setState({...state, error:"Oops!.. Network error occured"});
+        (response.status==500) ? setState({...state, error:"Oops!.. Network error occured"}) : setState({...state, error:"Oops!.. "+response.data.message});
         await waitFor(30000);
         getAllPost(currentPage);
         return console.log('');
@@ -115,13 +115,17 @@ function Index(props) {
 
   const renderContent = () => {
       if(posts) {
-          return (
-            <Blog>
-                {posts &&
-                  posts.map((post) => <BlogPost key={post.id} postItem={post} />)}
-                  {renderPagination()}
-          </Blog>
-          );
+          if(posts.length > 0) {
+              return (
+                <Blog>
+                    {posts &&
+                      posts.map((post) => <BlogPost key={post.id} postItem={post} />)}
+                      {renderPagination()}
+              </Blog>
+              );
+          }else{
+              return (<p>Sorry no more posts found</p>);
+          }
       }else{
           return (<p>Fetching Posts ...</p>);
       } 
